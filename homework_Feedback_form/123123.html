@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style/style.css">
+   <title>Document</title>
+</head>
+<body>
+   
+   <header>
+      <img src="img/mpu_logo.jpg" class="header-logo" alt="">
+      <h1 class="header-text">Домашняя работа: Hello, World! Время выполнения - 3 часа</h1>
+   </header>
+
+   <main>
+
+      <form action="feedback.php" method="post">
+
+         <label for="name">
+            <p>Введите ваше имя</p>
+            <input type="text" name="name" id="" placeholder="Иванов Иван" required>
+         </label>
+
+         <label for="mail">
+            <p>Введите адрес вашей э-почты</p>
+            <input type="mail" name="mail">
+         </label>
+
+         <label for="type-of-complaint">
+            <p>Выберите тип вашего обращения</p>
+            <select name="type-of-complaint" id="" re>
+               <option value="gratitude">Благодарность</option>
+               <option value="complaint">Жалоба</option>
+               <option value="offer">Предложение</option>
+            </select>
+         </label>
+
+         <label for="complaint-text">
+            <p>Введите текст вашего обращения</p>
+            <textarea name="complaint-text" id=""></textarea>
+         </label>
+
+            <p>Выберите тип обратной связи</p>
+
+         <label for="sms-answer">
+            <p>СМС</p>
+            <input type="checkbox" name="sms">
+         </label>
+
+         <label for="mail-answer">
+            <p>Mail</p>
+            <input type="checkbox" name="mail-answer">
+         </label>
+
+      </form>
+
+   </main>
+
+   <footer>
+      <p>Создать веб-страницу с динамическим контентом. Загрузить код в удаленный репозиторий. </p>
+   </footer>
+
+</body>
+</html>
+

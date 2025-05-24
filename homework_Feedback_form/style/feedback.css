@@ -1,0 +1,44 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    color: green;
+    text-align: center;
+    min-height: 100vh;
+    background-color: black;
+}
+
+header{
+    border-bottom: 1px solid green;
+}
+
+.page-wrapper{
+    border-top: 2px solid green;
+    border-left: 2px solid green;
+    padding: 0rem .5rem;
+}
+
+h1{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.feedback__text{
+    text-align: start ;
+}
+
+main, header, .header-text{
+    background-color: black;
+}
+
+footer{
+    border-top: 1px solid green;
+    background-color: black;
+}
+
+.header__text{
+    font-size: 2rem;
+    text-align: start;
+}
+
+.feedback__text.bottom{
+    border-bottom: 2px solid green;
+}
