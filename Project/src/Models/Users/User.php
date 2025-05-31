@@ -6,7 +6,7 @@ use src\Models\ActiveRecordEntity;
 
 class User extends ActiveRecordEntity
 {
-    protected $nickname;
+    protected $username;
     protected $email;
     protected $isConfirmed;
     protected $role;
@@ -19,13 +19,21 @@ class User extends ActiveRecordEntity
         return 'users';
     }
 
-    public function setName(string $nickname){
-        $this->nickname = $nickname;
+    public function setUsername(string $username){
+        $this->username = $username;
     }
 
-    public function getNickname(): string
-    {
-        return $this->nickname;
+    public function setEmail(string $email){
+        $this->email = $email;
     }
-    
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
 }

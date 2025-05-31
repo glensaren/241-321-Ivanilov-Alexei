@@ -10,4 +10,8 @@ return [
     '~^article/create$~'=>[src\Controllers\ArticleController::class, 'create'],
     '~^article/store$~'=>[src\Controllers\ArticleController::class, 'store'],
     '~^hello/(.+)$~'=>[src\Controllers\MainController::class,'sayHello'],
+
+    '~^users$~' => [src\Controllers\UserController::class, 'index'],
+    '~^users/store$~' => [src\Controllers\UserController::class, 'store'],
+    '~^users/create$~' => [src\Controllers\UserController::class, 'create'],
 ];

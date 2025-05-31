@@ -36,6 +36,29 @@ abstract class ActiveRecordEntity
         return $entities ? $entities[0] : null;
     }
 
+    // public static function getByUsername(string $username)
+    // {
+    //     $db = Db::getInstance();
+    //     $sql = 'SELECT * FROM `'.static::getTableName().'` WHERE `username` =:username';
+    //     $entities = $db->query($sql, [':username'=>$username], static::class);
+    //     return $entities ? $entities[0] : null;
+    // }
+
+    public static function getByUsername(string $username): ?self {
+    $db = \src\Services\Db::getInstance();
+
+    $sql = 'SELECT * FROM ' . static::getTableName() . ' WHERE username = :username LIMIT 1';
+
+    $result = $db->query(
+        $sql,
+        [':username' => $username],
+        static::class
+    );
+
+    return $result ? $result[0] : null;
+    }
+
+
     protected function MappedPropertiesToDB(){
         $reflector = new \ReflectionObject($this);
         $properties=[];

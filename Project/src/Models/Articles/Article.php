@@ -7,35 +7,48 @@ use src\Models\Users\User;
 class Article extends ActiveRecordEntity
 {
         protected $title;
-        protected $text;
+        protected $content;
         protected $authorId;
         protected $createdAt;
 
-        protected static function getTableName(){
+        protected static function getTableName(): string{
             return 'articles';
         }
 
         public function setTitle(string $title){
             $this->title = $title;
         }
-        public function setText(string $text){
-            $this->text = $text;
+
+        public function setContent(string $content){
+            $this->content = $content;
         }
-        public function setAuthor(User $author){
-            $this->authorId = $author;
+
+        public function setAuthor(User $author): void
+        {
+            $this->authorId = $author->getId();
         }
+
+        public function setCreatedAt(string $createdAt){
+            $this->createdAt = $createdAt;
+        }
+
         public function getTitle()
         {
             return $this->title;
         }
-        public function getText()
+        public function getContent()
         {
-            return $this->text;
+            return $this->content;
         }
-        public function getAuthorId() :User
+
+        public function getAuthor(): ?User
         {
-            return User::getById($this->authorId);
+        if ($this->authorId === null) {
+            return null;
         }
+        return User::getById($this->authorId);
+        }
+
         public function getCreatedAt()
         {
             return $this->createdAt;
