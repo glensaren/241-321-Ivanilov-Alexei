@@ -1,5 +1,5 @@
 <?php require(dirname(__DIR__).'/header.php');?>
-<form action="<?=dirname($_SERVER['SCRIPT_NAME'])?>/article/store" method="post">
+<form action="<?=dirname($_SERVER['SCRIPT_NAME'])?>/article/store" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="createdAt" class="form-label">Дата написания</label>
         <input type="date" class="form-control" id="createdAt" name="createdAt">
@@ -16,6 +16,11 @@
     <div class="mb-3">
         <label for="author" class="form-label">Подпись</label>
         <input type="text" class="form-control" id="author" name="author" placeholder="Оставьте пустым, чтобы запостить от лица гостя">
+    </div>
+
+    <div class="mb-3">
+        <label for="image" class="form-label">Изображение</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*">
     </div>
 
     <button type="submit" class="btn btn-primary">Сохранить</button>

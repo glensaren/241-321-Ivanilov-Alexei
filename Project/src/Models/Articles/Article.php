@@ -6,6 +6,7 @@ use src\Models\Users\User;
 
 class Article extends ActiveRecordEntity
 {
+        protected $imagePath;
         protected $title;
         protected $content;
         protected $authorId;
@@ -32,6 +33,10 @@ class Article extends ActiveRecordEntity
             $this->createdAt = $createdAt;
         }
 
+        public function setImagePath(?string $path){
+            $this->imagePath = $path;
+        }
+
         public function getTitle()
         {
             return $this->title;
@@ -53,4 +58,9 @@ class Article extends ActiveRecordEntity
         {
             return $this->createdAt;
         }
+
+        public function  getImagePath(): ?string{
+            return $this->imagePath;
+        }
+
     }

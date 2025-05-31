@@ -71,16 +71,36 @@ class ArticleController
         }
         }
 
-        // $user = User::getByUsername($username);
-
-
-        // if ($user === null) {
-        //     die('Ошибка: пользователь с таким именем не найден.');
-        // }
-
         $article->setAuthor($user);
 
         $article->createdAt = $_POST['createdAt'];
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['image']['tmp_name'];
+        $fileName = $_FILES['image']['name'];
+        $fileSize = $_FILES['image']['size'];
+        $fileType = $_FILES['image']['type'];
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($fileType, $allowedTypes)) {
+            die('Ошибка: можно загружать только изображения JPG, PNG или GIF');
+        }
+
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+        $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+
+        $uploadFileDir = __DIR__ . '/../../www/images/'; 
+        $destPath = $uploadFileDir . $newFileName;
+
+        if(move_uploaded_file($fileTmpPath, $destPath)) {
+            // Успешно сохранено, сохраняй путь в статью
+            $article->imagePath = '/images/' . $newFileName;
+        } else {
+            die('Ошибка при загрузке файла');
+        }
+    }
+
 
         $article->save();
 

@@ -18,9 +18,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="hello/olga">Аккаунт</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="<?=dirname($_SERVER['SCRIPT_NAME'])?>/article/create">Написать что-то...</a>
         </li>
@@ -29,9 +29,9 @@
           <a class="nav-link" href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/?route=users">Пользователи</a>
         </li>
       </ul>
-      <form class="d-flex">
+      <!-- <form class="d-flex">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> -->
     </div>
   </div>
 </nav>
