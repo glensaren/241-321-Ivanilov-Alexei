@@ -13,6 +13,7 @@
     <div class="text-center">
       <a href="<?=dirname($_SERVER['SCRIPT_NAME'])?>/article/<?=$article->getId();?>/edit" class="card-link text-decoration-none">Редактировать</a>
       <a href="<?=dirname($_SERVER['SCRIPT_NAME'])?>/article/<?=$article->getId();?>/delete" class="card-link text-decoration-none">Удалить</a>
+      <p class="cart-text text-muted"><?=$article->getCreatedAt();?></p>
     </div>
   </div>
 </div>

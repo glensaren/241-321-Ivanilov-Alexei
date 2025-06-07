@@ -44,7 +44,7 @@ abstract class ActiveRecordEntity
     //     return $entities ? $entities[0] : null;
     // }
 
-    public static function getByUsername(string $username): ?self {
+    public static function getByUsername(string $username): ?static {
     $db = \src\Services\Db::getInstance();
 
     $sql = 'SELECT * FROM ' . static::getTableName() . ' WHERE username = :username LIMIT 1';

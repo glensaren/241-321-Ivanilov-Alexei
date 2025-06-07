@@ -59,8 +59,9 @@ class ArticleController
         $article->title = $_POST['title'];
         $article->content = $_POST['content'];
         $username = trim($_POST['author']);
+        $article->createdAt = $_POST['createdAt'];
 
-        if (!empty($username)) {
+        if(!empty($username)) {
         $user = User::getByUsername($username);
         }
 
@@ -72,8 +73,6 @@ class ArticleController
         }
 
         $article->setAuthor($user);
-
-        $article->createdAt = $_POST['createdAt'];
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
@@ -94,7 +93,6 @@ class ArticleController
         $destPath = $uploadFileDir . $newFileName;
 
         if(move_uploaded_file($fileTmpPath, $destPath)) {
-            // Успешно сохранено, сохраняй путь в статью
             $article->imagePath = '/images/' . $newFileName;
         } else {
             die('Ошибка при загрузке файла');
