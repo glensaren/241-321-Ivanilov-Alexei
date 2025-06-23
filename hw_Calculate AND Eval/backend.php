@@ -1,4 +1,6 @@
 <?php
+include 'trigonometry.php';
+
 function calculate($expr) {
     $expr = str_replace(' ', '', $expr);
 
@@ -36,7 +38,7 @@ function toRPN($expr) {
             while (!empty($stack) && end($stack) !== '(') {
                 $output[] = array_pop($stack);
             }
-            array_pop($stack); // Удалим '('
+            array_pop($stack);
         }
     }
 
@@ -47,7 +49,6 @@ function toRPN($expr) {
     return $output;
 }
 
-// Вычисление RPN
 function evaluate($expr) {
     $rpn = toRPN($expr);
     $stack = [];
@@ -74,8 +75,21 @@ function evaluate($expr) {
     return count($stack) === 1 ? $stack[0] : "Ошибка вычисления";
 }
 
-// Получаем POST-запрос
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['load_file'])) {
+        $expression = file_get_contents(__DIR__ . '/trigonometry_example.txt');
+
+        $expression = preg_replace_callback('/(sin|cos|tan|cot|sec|csc)\(([^)]+)\)/i', function($matches) {
+            $func = $matches[1];
+            $value = eval('return ' . $matches[2] . ';');
+            return calculateTrig($func, $value);
+        }, $expression);
+
+        $result = eval('return ' . $expression . ';');
+        echo $result;
+        exit;
+    }
+
     $expr = $_POST['expr'] ?? '';
     $result = calculate($expr);
     echo $result;

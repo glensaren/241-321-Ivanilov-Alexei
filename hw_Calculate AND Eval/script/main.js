@@ -2,7 +2,7 @@ const buttonLabels = ['1' , '2' , '3', '+' ,
  '4' , '5' , '6', '-' ,
  '7' , '8' , '9', '*' ,
  '(' , '0' , ')', '/' ,
- 'AC' , '=' , 'C' , '.'
+ 'AC' , '=' , 'C' , '.', 'F'
 ];
 
 
@@ -15,9 +15,17 @@ buttonLabels.forEach(label => {
   button.onclick = () => {
     if (label === '=') {
       calculateExpression();
-    } else if (label === 'C') {
+    } 
+    
+    else if (label === 'C') {
       displayField.value = '';
-    } else {
+    }
+
+    else if (label === 'F') {
+      fetchTrigFromFile();
+    }
+
+    else {
       displayField.value += label;
     }
   };
@@ -32,8 +40,19 @@ function calculateExpression() {
   })
   .then(response => response.text())
   .then(serverResult => {
-    displayField.value = serverResult; // просто отобразить, не переходить
+    displayField.value = serverResult;
   });
 }
 
+function fetchTrigFromFile() {
+  fetch('backend.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'load_file=true'
+  })
+  .then(response => response.text())
+  .then(result => {
+    displayField.value = result;
+  });
+}
 
