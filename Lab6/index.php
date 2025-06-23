@@ -11,109 +11,54 @@
    
    <header>
       <img src="img/mpu_logo.jpg" class="header-logo" alt="">
-      <h1 class="header-text">Лабораторная работа №1 - Основные элементы и операторы.</h1>
+      <h1 class="header-text">Лабораторная работа №6 - Сессия и куки. Время выполнения - 2 ак. часа.</h1>
    </header>
 
    <main>
       <section class="page-wrapper">
       <?php
       // 1)
-      $a = 27;  
-      $b = 12;  
-      $hypotenuse = round(sqrt($a * $a + $b * $b), 2);  
-      echo "<p>a = $a<br>b = $b<br>Гипотенуза: $hypotenuse</p>";
-      //Ответ : 29.55
-
-      // 5)
-      $a = 2;
-      $b = 2.0;
-      $c = '2';
-      $d = 'two';
-      $g = true;
-      $f = false;
-
-      $res1 = $c . $a;
-      $res2 = $c . $b;
-      $res3 = $c . $g;
-      $res4 = $c . $f;
-      $res5 = $d . $a;
-      $res6 = $d . $b;
-      $res7 = $d . $g;
-      $res8 = $d . $f;
-
-      echo "<p>c . a = {$res1}<br>c . b = {$res2}<br>c . g = {$res3}<br>c . f = {$res4}<br>d . a = {$res5}<br>d . b = {$res6}<br>d . g = {$res7}<br>d . f = {$res8}</p>";
-      // Ответ: Все выражения выше являются конкатенацией и дают строки:
-      // '22', '22', '21', '20', 'two2', 'two2', 'twotrue', 'twofalse'
-
-      //10
-      $hunter = 'охотник';
-      $wants_to = 'желает';
-      $know = 'знать';
-      $fizan = 'фазан';
-      $sits = 'сидит';
-
-      $phrase = "Каждый $hunter $wants_to $know, где $sits $fizan";
-
-      echo "<p>$phrase</p>";
-
-      // Ответ: Каждый охотник желает знать, где сидит фазан.
-
-      //14
-      $quieter = 'Тише';
-      $go = 'едешь';
-      $further = 'дальше';
-
-      $proverb = $quieter . ' ' . $go . ' ' . $further . ' будешь.';
-
-      echo "<p>$proverb</p>";
-
-      // Ответ: Тише едешь дальше будешь.
-
-      // 32)
-      $a = 2;
-      $b = 2.0;
-      $c = '2';
-      $d = 'two';
-      $g = true;
-      $f = false;
-
-      $variables = ['a' => $a, 'b' => $b, 'c' => $c, 'd' => $d, 'g' => $g, 'f' => $f];
-
-      echo "<table border='1' cellpadding='5'><tr><th>Переменная</th><th>Исходный тип</th><th>Значение до приведения</th><th>Значение после приведения к float</th></tr>";
-
-      foreach ($variables as $name => $value) {
-         $type_before = gettype($value);
-         // Для отображения булевых значений и строк с кавычками
-         if (is_bool($value)) {
-            $val_before = $value ? 'true' : 'false';
-         } elseif (is_string($value)) {
-            $val_before = "'{$value}'";
-         } else {
-            $val_before = $value;
-         }
-         $float_value = (float)$value;
-         echo "<tr><td>\${$name}</td><td>{$type_before}</td><td>{$val_before}</td><td>{$float_value}</td></tr>";
+      session_start();
+      $_SESSION['text'] = 'test';
+      echo "<p>1) Значение в сессии: {$_SESSION['text']}</p>";
+      // 3)
+      if (isset($_SESSION['count'])) {
+          $_SESSION['count']++;
+          echo "<p>3) Вы обновили страницу {$_SESSION['count']} раз(а).</p>";
+      } else {
+          $_SESSION['count'] = 0;
+          echo "<p>3) Вы ещё не обновляли страницу.</p>";
       }
-
-      echo "</table>";
-
-      // Ответ: Приведение к float:
-      // $a (int) -> 2
-      // $b (double) -> 2
-      // $c (string '2') -> 2
-      // $d (string 'two') -> 0
-      // $g (boolean true) -> 1
-      // $f (boolean false) -> 0
-
-
-
-      ?>
+      // 5)
+      if (!isset($_SESSION['time'])) {
+          $_SESSION['time'] = time();
+          echo "<p>5) Время захода на сайт зафиксировано.</p>";
+      } else {
+          $elapsed = time() - $_SESSION['time'];
+          echo "<p>5) Вы зашли на сайт $elapsed секунд назад.</p>";
+      }
+      // 7)
+      setcookie('test', '123', 0);
+      if (isset($_COOKIE['test'])) {
+          echo "<p>7) Значение куки test: {$_COOKIE['test']}</p>";
+      } else {
+          echo "<p>7) Кука test установлена. Обновите страницу.</p>";
+      }
+      // 9)
+      if (isset($_COOKIE['visits'])) {
+          $visits = $_COOKIE['visits'] + 1;
+      } else {
+          $visits = 1;
+      }
+      setcookie('visits', $visits, 0);
+      echo "<p>9) Вы посетили наш сайт $visits раз(а)!</p>";
+?>
 
       </section>
    </main>
 
    <footer>
-      <p>Основные элементы и операторы.</p>
+      <p>Сессия и куки.</p>
    </footer>
 
 </body>
