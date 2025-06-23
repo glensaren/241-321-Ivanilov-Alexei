@@ -39,7 +39,7 @@
       // 34)
       $str = "example_file.php";
 
-      if (preg_match('/\.(txt|html|php)$/i', $str)) {
+      if (preg_match('/^\.(txt|html|php)$/i', $str)) {
          echo "<p>34) Строка '{$str}' заканчивается на расширение txt, html или php.</p>";
       } else {
          echo "<p>34) Строка '{$str}' НЕ заканчивается на расширение txt, html или php.</p>";
